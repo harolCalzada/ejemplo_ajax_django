@@ -41,9 +41,6 @@ class Libro(models.Model):
         self.slug = slugify(self.nombre)
         super(Libro, self).save(*args, **kwargs)
 
-    # def obtener_autores(self, cod):
-    #     return self.fk_autor_get.all()
-
     def __str__(self):
         return self.nombre
 
@@ -60,12 +57,6 @@ class Autor_Libro(models.Model):
 
     def __str__(self):
         return u'%s-%s' % (self.fk_autor.nombre_completo, self.fk_libro.nombre)
-
-    # def agregar_autores(self):
-    #     return self.fk_libro.fk_autor
-    # def obtener_autores(self):
-    #     ##aka no se como implementar este metodo
-    #     return self.libro_set.all()
 
     class Meta:
         verbose_name = 'Publicación'

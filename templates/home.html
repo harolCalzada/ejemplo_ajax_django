@@ -8,47 +8,38 @@
     <h1>LIBROS-ORG</h1>
     <label >Buscar</label>
     <input type="text" placeholder="Nombre del libro" id = "busquedaLibro">
-    <div id = "lista"> <p></p></div>
+    <div id = "lista"> </div>
 
     {% for autor_libro  in  autores_libros%}
     <a href="{%url 'detalle_libro' autor_libro.fk_libro.slug %} "><h3>{{autor_libro.fk_libro.nombre}}</h3></a>
     <h5>{{autor_libro.fk_autor.nombre_completo}}</h6>
     {% endfor %}
+
+
     <script type="text/javascript">
-     {% comment %}
-         Codigo javascript para el Ajax
-                $('#busquedProyecto').keyup(function(e){
-                 consulta = $("#busquedProyecto").val();
-                 $.ajax({
-                 data: {'nombre': consulta},
-                 url: '/proyecto/busqueda/',
-                 type: 'get',
-                 success : function(data) {
-                         console.log(data[0].nombre);
-                 },
-                 error : function(message) {
-                         console.log(message);
-                      }
-                 });
-                });
-     {% endcomment %}
      $('#busquedaLibro').keyup(function(event) {
-         /* Act on the event */
+
          consulta = $('#busquedaLibro').val();
+         if ($('#busquedaLibro').val()){
          $.ajax({
              url: '/busqueda/',
              type: 'get',
              data: {'nombre': consulta},
+
              success : function(data){
-                    console.log(data);
-                    object = data;
-                    console.log(object)
-                    var html = "<ul>" + object.nombre +"</ul>";
+                    var html = "" ;
+                    for (var i=0; i < data.length ; i ++){
+                         html = html +("<ul><a href='/detalle-libro/"+ data[i]['fields']['slug'] +"/'>" + data[i]['fields']['nombre'] +" </a></ul>");
+                    }
+
+                    console.log(html);
                     $('#lista').html(html);
              }
          });
 
-
+         }else{
+             $('#lista').remove();
+         }
      });
 
     </script>

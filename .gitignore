@@ -1,0 +1,62 @@
+# use glob syntax.
+syntax: glob
+# Empty lines are skipped too.
+# Backup files left behind by the Emacs editor.
+*~
+# Lock files used by the Emacs editor.
+# Notice that the "#" character is quoted with a backslash.
+# This prevents it from being interpreted as starting a comment.
+.\#*
+# Temporary files used by the vim editor.
+.*.swp
+# A hidden file created by the Mac OS X Finder.
+.DS_Store*
+# Python files
+*.pyc
+*.pyo
+*.elc
+*.egg-info
+.project
+MANIFEST
+dist
+build
+cover/
+docs/build
+docs/_build
+datadir
+git
+
+*.nja
+*.pyc
+*~
+*.bak
+src/settings/settings.json
+*.orig
+
+# django
+
+# media
+src/media/*
+CACHE/*
+*.jpg
+*.png
+
+
+# Eclipse
+.project
+.pydevproject
+
+# base de datos
+*.sqlite
+*.sqlite3
+*.db
+data/*
+app
+
+# otros
+.coverage
+*.directory
+
+# switch to regexp syntax.
+syntax: regexp
+^\.pc/
